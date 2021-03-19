@@ -20,22 +20,63 @@ export default defineComponent({
     Util.messageChannelFn().port1.postMessage('呼叫 port2');
     Util.messageChannelFn().port2.postMessage('回复 port1');
 
-    const config = { attributes: true, childList: true, subtree: true };
-    const callback = (mutationList?: [], observe?: unknown) => {
-      if (!mutationList) return;
-      for (let mutation of mutationList) {
-        console.log(mutation, 'mutation');
-      }
+    const myLove = {
+      name: 'qinyue',
+      age: 18,
     };
-    const observer = new MutationObserver(callback);
+    const validator = {
+      get(obj, prop) {
+        return prop in obj ? obj[prop] : 33;
+      },
+      set(obj, prop, value): boolean {
+        if (prop === 'age') {
+          if (!Number.isInteger(value)) {
+            throw new TypeError(`The age is not an integer`);
+          }
+          if (value > 200) {
+            throw new RangeError(`The age seems invalid`);
+          }
+        }
+        obj[prop] = value;
+        return true;
+      },
+      getPrototypeOf(obj): object | null {
+        console.log(obj, 'getPrototypeOf');
+        return obj;
+      },
+      setPrototypeOf(obj, proto) {
+        console.log(obj, proto, 'setPrototypeOf');
+        return false;
+      },
+      isExtensible(obj) {
+        return Reflect.isExtensible(obj);
+      },
+      preventExtensions(obj) {
+        obj.canEvolve = false;
+        return Reflect.preventExtensions(obj);
+      },
+      getOwnPropertyDescriptor(obj, prop) {
+        console.log(obj, prop, 'weiwei');
+        return { configurable: true, enumerable: true, value: 9999 };
+      },
+    };
 
-    onMounted(() => {
-      console.log(refApp.value);
-      observer.observe(<Node>refApp.value, config);
-      refApp.value?.appendChild(document.createElement('div'));
-      refApp.value?.appendChild(document.createTextNode('新增Text节点')); //不会观察到
-      refApp.value?.childNodes[0].remove();
+    const love = new Proxy(myLove, {
+      ...validator,
     });
+
+    love.skin = `white`;
+    love.age = 23;
+    console.log(love);
+    console.log(Reflect.getPrototypeOf(love) === myLove);
+    Reflect.setPrototypeOf(love, { time: 'long' });
+    console.log(Reflect.isExtensible({ 231: 'asd' }), 'isExtensible');
+    console.log(
+      Reflect.getOwnPropertyDescriptor(love, 'skkin'),
+      'getOwnPropertyDescriptor'
+    );
+
+    onMounted(() => {});
 
     return {
       refApp,
