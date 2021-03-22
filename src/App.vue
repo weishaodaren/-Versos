@@ -8,6 +8,7 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { Three, Line } from './components';
 import * as Util from './util';
+import produce from 'immer';
 
 export default defineComponent({
   name: 'App',

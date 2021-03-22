@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "immer": "^9.0.1",
     "three": "^0.126.1",
     "vue": "^3.0.5"
   },
