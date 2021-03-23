@@ -1,14 +1,18 @@
 <template>
   <!-- <Three msg="weishaodaren" /> -->
   <!-- <Line /> -->
-  <div ref="refApp"></div>
+  <div ref="refApp">
+    <div ref="demo"></div>
+    <div @click="onStart">start working</div>
+    <div @click="onStop">stop working</div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import { Three, Line } from './components';
 import * as Util from './util';
-import produce from 'immer';
+import { counter } from './workers';
 
 export default defineComponent({
   name: 'App',
@@ -117,10 +121,32 @@ export default defineComponent({
     let A = new AA(2222);
     console.log(A.val);
 
+    const W = ref(null);
+    const demo = ref(null);
+
+    const onStart = () => {
+      if (typeof Worker !== 'undefined') {
+        W.value = new Worker(counter);
+        W.value.onmessage = (event) => {
+          console.log(event, 'event');
+          demo.value.innerHTML = event.data;
+        };
+      } else {
+        demo.value.innerHTML = `.......lalalalalalal`;
+      }
+    };
+    const onStop = () => {
+      W.value.terminate();
+      W.value = undefined;
+    };
+
     onMounted(() => {});
 
     return {
       refApp,
+      demo,
+      onStart,
+      onStop,
     };
   },
 });
