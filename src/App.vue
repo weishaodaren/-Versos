@@ -25,14 +25,16 @@ export default defineComponent({
         name: 'Tea',
         query: {
           ...route.query,
+          msg: `weishaodaren loves green tea`,
         },
       });
 
     const onCoffee = () =>
       router.push({
         name: 'Coffee',
-        query: {
-          ...route.query,
+        params: {
+          ...route.params,
+          msg: `weishaodaren loves cold brew`,
         },
       });
 
