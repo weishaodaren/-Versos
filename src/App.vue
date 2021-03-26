@@ -22,7 +22,7 @@ export default defineComponent({
 
     const onTea = () =>
       router.push({
-        name: 'Tea',
+        path: '/tea',
         query: {
           ...route.query,
           msg: `weishaodaren loves green tea`,

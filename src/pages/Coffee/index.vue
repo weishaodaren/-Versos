@@ -7,11 +7,19 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router';
 
 export default defineComponent({
   name: 'Coffee',
   setup() {
+    onBeforeRouteLeave((to, from, next) => {
+      console.log(`i am leaving`);
+      next();
+    });
+    onBeforeRouteUpdate((to, from, next) => {
+      console.log(`i am updating`);
+      next();
+    });
     const title = ref<string | null>(null);
 
     onMounted(() => {
