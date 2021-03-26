@@ -8,10 +8,15 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router';
+import { useStore } from 'vuex';
+import { key } from '@/stores';
 
 export default defineComponent({
   name: 'Coffee',
   setup() {
+    const store = useStore(key);
+    console.log(store.state.count);
+
     onBeforeRouteLeave((to, from, next) => {
       console.log(`i am leaving`);
       next();
