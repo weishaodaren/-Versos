@@ -3,22 +3,39 @@
     This is Tea
     <h5 @click="increment">{{ title }}</h5>
     <h4 @click="onAdd">CLICK ME {{num}}</h4>
+    <i>{{count}}</i>
+    <br>
+    <input v-model="computedNum" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, computed } from 'vue';
+import { defineComponent, onMounted, ref, computed, reactive , toRef} from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore} from 'vuex'
-import { key, IState } from '@/stores'
+import { key } from '@/stores'
 
 export default defineComponent({
   name: 'Tea',
   setup() {
     const store = useStore(key)
     const title = ref<string | null>(null);
+    const state = reactive({
+      count: 9
+    })
 
-    const num = computed(() => store.getters.count)
+    const num = computed(() => store.getters.count);
+
+    const computedNum = computed({
+      get:() => {
+        return state.count++
+        },
+      set: value => {
+        console.log(value, 'this is computed set');
+       return state.count + value
+      }
+    })
+
     
     onMounted(() => {
       const {
@@ -31,7 +48,9 @@ export default defineComponent({
       title,
       increment:() => store.dispatch('increments', 20),
       onAdd:() => store.commit({type: 'increment', amount: 1}),
-      num
+      num,
+      count: toRef(state, 'count'),
+      computedNum
     };
   },
 });
