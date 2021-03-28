@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, computed, reactive , toRef} from 'vue';
+import { defineComponent, onMounted, ref, computed, reactive , toRef, watch, onUnmounted} from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore} from 'vuex'
 import { key } from '@/stores'
@@ -21,7 +21,8 @@ export default defineComponent({
     const store = useStore(key)
     const title = ref<string | null>(null);
     const state = reactive({
-      count: 9
+      count: 9,
+      age: 1
     })
 
     const num = computed(() => store.getters.count);
@@ -36,6 +37,12 @@ export default defineComponent({
       }
     })
 
+   const stop = watch([
+      () => state.count,
+      () => state.age], 
+      ([newCount, newAge], [oldCount, oldAge]) => {
+        console.log([newCount, newAge], [oldCount, oldAge]);
+      })
     
     onMounted(() => {
       const {
@@ -44,6 +51,10 @@ export default defineComponent({
 
       title.value = msg as string;
     });
+
+    onUnmounted(() =>{
+      stop()
+    })
     return {
       title,
       increment:() => store.dispatch('increments', 20),
