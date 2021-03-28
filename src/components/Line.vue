@@ -2,11 +2,11 @@
   <div id="line"></div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import * as THREE from 'three';
+import { defineComponent, ref, onMounted } from "vue";
+import * as THREE from "three";
 
 export default defineComponent({
-  name: 'Line',
+  name: "Line",
   setup() {
     const line = ref<HTMLDivElement>();
 

@@ -4,11 +4,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import * as Three from 'three';
+import { defineComponent, ref, onMounted } from "vue";
+import * as Three from "three";
 
 export default defineComponent({
-  name: 'Three',
+  name: "Three",
   props: {
     msg: {
       type: String,
