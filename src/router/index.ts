@@ -18,6 +18,7 @@ const routes: Array<IRoutes> = [
     name: 'Coffee',
     component: () => import('Pages/Coffee/index.vue'),
   },
+  { path: '/beer', name: 'Beer', component: () => import('Pages/Beer') },
 ];
 
 const router: Router = createRouter({

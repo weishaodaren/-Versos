@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from "vue-router";
-import { useStore } from "vuex";
-import { key } from "@/stores";
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { useRoute, onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router';
+import { useStore, mapState } from 'vuex';
+import { key, IState } from '@/stores';
 
 export default defineComponent({
-  name: "Coffee",
+  name: 'Coffee',
   setup() {
     const store = useStore(key);
     console.log(store.state.count);
