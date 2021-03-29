@@ -1,6 +1,11 @@
 import { defineComponent, Fragment, ref, computed } from 'vue';
 import { WrappedInput, Button } from './style';
 
+const List = [
+  { name: 'A', aliasName: 'a' },
+  { name: 'B', aliasName: 'b' },
+  { name: 'C', aliasName: 'c' },
+];
 const Beer = defineComponent({
   name: 'Beer',
   components: { 'wrapped-input': WrappedInput, Button },
@@ -19,7 +24,13 @@ const Beer = defineComponent({
           v-model={inputValComputed.value}
         />
         <h2>This is fuckin beer</h2>
-        <Button>Click Me</Button>
+        <div>
+          {List.map((el, index) => (
+            <Fragment key={index}>
+              <Button>{`${el.name} - ${el.aliasName}`}</Button>
+            </Fragment>
+          ))}
+        </div>
       </Fragment>
     );
   },
