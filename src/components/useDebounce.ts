@@ -1,13 +1,13 @@
-import { Ref, reactive } from 'vue';
+import { reactive } from 'vue';
 
-const useDebounce: (fn: Ref<void>, wait: number) => void = (fn, wait) => {
+const useDebounce: (fn: Function, wait: number) => Function[] = (fn, wait) => {
   const current = <
     {
-      fn: unknown;
-      timer: unknown;
+      fn: Function;
+      timer: unknown | TimerHandler;
     }
   >reactive({
-    fn: fn,
+    fn,
     timer: null,
   });
 
