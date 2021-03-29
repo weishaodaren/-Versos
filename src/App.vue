@@ -65,9 +65,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$font-size: 20px;
-.count-style {
+@mixin font-size {
   color: pink;
-  font-size: $font-size + 2px;
+  font-size: 30px;
+}
+.count-style {
+  @include font-size();
 }
 </style>
