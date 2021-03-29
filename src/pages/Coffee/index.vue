@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="coffee-container">
     This is Coffee
     <h5>{{ title }}</h5>
   </div>
@@ -40,3 +40,16 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="stylus" scoped>
+$font-size = 100px
+
+.coffee-container
+  background: #126
+  color: white
+  font-size:$font-size
+  &:hover
+    cursor: pointer
+    color: red
+    font-size: @font-size - 50px
+</style>

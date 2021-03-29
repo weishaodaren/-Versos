@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tea-container">
     This is Tea
     <h5 @click="increment">{{ title }}</h5>
     <h4 @click="onAdd">CLICK ME {{ num }}</h4>
@@ -19,13 +19,13 @@ import {
   toRef,
   watch,
   onUnmounted,
-} from "vue";
-import { useRoute } from "vue-router";
-import { useStore } from "vuex";
-import { key } from "@/stores";
+} from 'vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+import { key } from '@/stores';
 
 export default defineComponent({
-  name: "Tea",
+  name: 'Tea',
   setup() {
     const store = useStore(key);
     const title = ref<string | null>(null);
@@ -41,7 +41,7 @@ export default defineComponent({
         return state.count++;
       },
       set: (value) => {
-        console.log(value, "this is computed set");
+        console.log(value, 'this is computed set');
         return state.count + value;
       },
     });
@@ -66,12 +66,26 @@ export default defineComponent({
     });
     return {
       title,
-      increment: () => store.dispatch("increments", 20),
-      onAdd: () => store.commit({ type: "increment", amount: 1 }),
+      increment: () => store.dispatch('increments', 20),
+      onAdd: () => store.commit({ type: 'increment', amount: 1 }),
       num,
-      count: toRef(state, "count"),
+      count: toRef(state, 'count'),
       computedNum,
     };
   },
 });
 </script>
+
+<style lang="less" scoped>
+@font-size: 10px;
+.tea-container {
+  background: teal;
+  font-size: @font-size;
+
+  i:hover {
+    cursor: pointer;
+    color: tomato;
+    font-size: @font-size + 100px;
+  }
+}
+</style>

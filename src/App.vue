@@ -3,7 +3,9 @@
     <h5 @click="onTea">Go to Tea</h5>
     <h5 @click="onCoffee">Go to Coffee</h5>
     <h5 @click="onBeer">Go to Beer</h5>
-    <h2 @click="onChange">count is : {{ countNum.count }}</h2>
+    <h2 class="count-style" @click="onChange">
+      count is : {{ countNum.count }}
+    </h2>
     <RouterView />
   </div>
 </template>
@@ -61,3 +63,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+$font-size: 20px;
+.count-style {
+  color: pink;
+  font-size: $font-size + 2px;
+}
+</style>
