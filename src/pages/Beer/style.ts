@@ -14,4 +14,27 @@ const WrappedInput = styled.input`
   }
 `;
 
-export default WrappedInput;
+const Button = styled.button`
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #666;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  &:hover {
+    background-color: #126;
+  }
+  &:active {
+    background-color: #666;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+`;
+
+export { WrappedInput, Button };
