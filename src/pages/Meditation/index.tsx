@@ -23,11 +23,12 @@ const Meditation = defineComponent({
 
     const [run, cancel] = useDebounce(switchColor, [500]);
 
-    const url = ref('https://httpbin.org/get');
+    const url = ref('users/weishaodaren');
     const refetch = ref(false);
 
     const { data } = useFetch({
       url,
+      method: 'GET',
       immediate: true,
       params: {
         id: `010002`,

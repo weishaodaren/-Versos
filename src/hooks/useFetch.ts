@@ -10,41 +10,64 @@ import {
 interface FetchOptions {
   url: Ref<string> | string;
   immediate: boolean;
+  method: 'GET' | 'POST' | 'DELETE' | 'PATCH';
   params: {
     [x: string]: any;
   };
 }
 
+/**
+ * 请求路径
+ */
+const path: (P: string) => string = (path) => `https://api.github.com/${path}`;
+
+/**
+ * 拼接参数
+ */
+const stringify: (P: { [x: string]: string | number | boolean }) => string = (
+  params
+) =>
+  Object.keys(params)
+    .map((key) => key + '=' + params[key])
+    .join('&');
+
 const useFetch: FunctionalComponent<FetchOptions> = (options) => {
-  const { url, immediate, params = {} } = options;
+  let { url, immediate, params = {}, method } = options;
+  url = path(unref(url));
+
+  let body: BodyInit | null = null;
+  if (params) {
+    if (method === `GET`) {
+      url += `?${stringify(params)}`;
+    } else {
+      body = JSON.stringify(params);
+    }
+  }
+  const headers = {
+    'Content-Type': 'application/json',
+  };
 
   const state = reactive({
     data: {},
-    error: null,
     loading: false,
   });
 
   const run = async () => {
-    let query = ``;
-    Object.keys(params).forEach((param) => {
-      const value = params[param];
-      query += `${param}=${unref(value)}&`;
-    });
-    console.log(query);
-
     state.loading = true;
 
-    try {
-      const result = await fetch(`${unref(url)}?${query}`).then((res) =>
-        res.json()
-      );
+    const result = await fetch(<string>url, {
+      method,
+      body,
+      headers,
+    });
 
+    if (method === 'GET') {
+      const resp = await result.json();
+      state.data = resp;
+      state.loading = false;
+    } else {
       state.data = result;
-    } catch (err) {
-      state.error = err;
     }
-
-    state.loading = false;
   };
 
   onBeforeMount(() => {
