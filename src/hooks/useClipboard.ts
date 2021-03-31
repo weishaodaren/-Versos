@@ -72,3 +72,4 @@ export function useClipboard(
     copy,
   };
 }
+export default useClipboard;

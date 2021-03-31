@@ -11,10 +11,10 @@ const useDebounce: (fn: Function, wait: number) => Function[] = (fn, wait) => {
     timer: null,
   });
 
-  const run: () => void = () => {
+  const run: (args: unknown) => void = (args) => {
     if (current.timer) clearTimeout(current.timer as number);
     current.timer = setTimeout(() => {
-      (current.fn as Function)();
+      (current.fn as Function)(args);
     }, wait);
   };
 

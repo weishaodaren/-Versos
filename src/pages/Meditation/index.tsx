@@ -1,5 +1,5 @@
 import { defineComponent, ref, unref, watch } from 'vue';
-import { useClipboard, useCss, useDebounce } from 'Components';
+import { useClipboard, useCss, useDebounce } from 'Hooks';
 
 const Meditation = defineComponent({
   setup() {
@@ -10,17 +10,17 @@ const Meditation = defineComponent({
     const color = useCss('--color', el);
 
     const switchColor = () => {
-      if (color.value === '#df8543') color.value = '#7fa998';
-      else color.value = '#df8543';
+      if (color.value === 'red') color.value = 'blue';
+      else color.value = 'red';
     };
 
-    const [run, cancel] = useDebounce(switchColor, 1000);
+    const [run, cancel] = useDebounce(switchColor, [500]);
 
     return () => (
       <>
         {isSupported && (
           <div>
-            <p ref={el} style={'--color: #7fa998; color: var(--color)'}>
+            <p ref={el} style={'--color: blue; color: var(--color)'}>
               Current copied: <code>{unref(text) ?? 'none'}</code>
             </p>
             <input v-model={input.value} type="text" />
