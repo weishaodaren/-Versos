@@ -1,5 +1,4 @@
 import { Ref, ref, unref, watch, computed, ComputedRef, shallowRef } from 'vue';
-
 interface UseFetchReturnBase<T> {
   isFinished: Ref<boolean>;
   statusCode: Ref<number | null>;
@@ -15,7 +14,7 @@ interface UseFetchReturnBase<T> {
 
 type DataType = 'text' | 'json' | 'blob' | 'arrayBuffer' | 'formData';
 type PayloadType = 'text' | 'json' | 'formData';
-type MaybeRef<T> = Ref<T> | T;
+type MaybeRef<T> = T | Ref<T> | ComputedRef<T>;
 
 interface UseFetchReturnMethodConfigured<T> extends UseFetchReturnBase<T> {
   json<JSON = any>(): UseFetchReturnBase<JSON>;
@@ -40,14 +39,14 @@ export interface UseFetchReturn<T> extends UseFetchReturnMethodConfigured<T> {
 
 export interface BeforeFetchContext {
   url: string;
-  options: ResponseInit;
+  options: RequestInit;
   cancel: Function;
 }
 
 export interface UseFetchOptions {
   fetch?: typeof window.fetch;
   immediate?: boolean;
-  refetch?: Ref<boolean> | boolean;
+  refetch?: MaybeRef<boolean>;
   beforeFetch?: (
     ctx: BeforeFetchContext
   ) =>
@@ -57,9 +56,17 @@ export interface UseFetchOptions {
 }
 
 export interface CreateFetchOptions {
-  baseUrl?: Ref<string> | string;
+  baseUrl?: MaybeRef<string>;
   options?: UseFetchOptions;
   fetchOptions?: RequestInit;
+}
+
+function isFetchOptions(obj: object): obj is UseFetchOptions {
+  return containsProp(obj, 'immediate', 'refetch', 'beforeFetch');
+}
+
+export function containsProp(obj: object, ...props: string[]) {
+  return props.some((k) => k in obj);
 }
 
 export function createFetch(config: CreateFetchOptions = {}) {
@@ -72,7 +79,7 @@ export function createFetch(config: CreateFetchOptions = {}) {
     );
 
     if (args.length > 0) {
-      if (args[0]) {
+      if (isFetchOptions(args[0])) {
         options = { ...options, ...args[0] };
       } else {
         fetchOptions = {
@@ -86,7 +93,8 @@ export function createFetch(config: CreateFetchOptions = {}) {
       }
     }
 
-    if (args.length > 1 && args[1]) options = { ...options, ...args[1] };
+    if (args.length > 1 && isFetchOptions(args[1]))
+      options = { ...options, ...args[1] };
 
     return useFetch(computedUrl, fetchOptions, options);
   }
@@ -122,12 +130,12 @@ export function useFetch<T>(
   let initialized = false;
 
   if (args.length > 0) {
-    if (args[0]) options = { ...options, ...args[0] };
+    if (isFetchOptions(args[0])) options = { ...options, ...args[0] };
     else fetchOptions = args[0];
   }
 
   if (args.length > 1) {
-    if (args[1]) options = { ...options, ...args[1] };
+    if (isFetchOptions(args[1])) options = { ...options, ...args[1] };
   }
 
   const { fetch } = options;

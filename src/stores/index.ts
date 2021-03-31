@@ -12,19 +12,18 @@ export const store = createStore<IState>({
     count: 0,
   },
   getters: {
-    count: state => state.count 
+    count: (state) => state.count,
   },
   mutations: {
     increment(state, payload) {
-      if(typeof payload === 'number')
-        state.count += payload
-      else if (typeof payload === 'object')
-        state.count += payload.amount
-    }
+      if (typeof payload === 'number') state.count += payload;
+      else if (typeof payload === 'object') state.count += payload.amount;
+    },
   },
   actions: {
-    increments({commit}, payload) {
-      commit('increment', payload)
-    }
-  }
+    increments({ commit }, payload) {
+      commit('increment', payload);
+    },
+  },
+  modules: {},
 });

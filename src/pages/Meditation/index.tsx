@@ -1,5 +1,12 @@
-import { defineComponent, ref, unref, watch } from 'vue';
-import { useClipboard, useCss, useDebounce } from 'Hooks';
+import {
+  defineComponent,
+  onBeforeMount,
+  onMounted,
+  ref,
+  unref,
+  reactive,
+} from 'vue';
+import { useClipboard, useCss, useDebounce, useFetch } from 'Hooks';
 
 const Meditation = defineComponent({
   setup() {
@@ -15,6 +22,15 @@ const Meditation = defineComponent({
     };
 
     const [run, cancel] = useDebounce(switchColor, [500]);
+
+    const url = ref('https://httpbin.org/get');
+    const refetch = ref(false);
+
+    const { data } = useFetch(url, { refetch }).get();
+    console.log(data.value);
+
+    // const A = await fetch(`https://api.github.com/users/weishaodaren`);
+    // console.log(await A.json());
 
     return () => (
       <>
