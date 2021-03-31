@@ -26,8 +26,15 @@ const Meditation = defineComponent({
     const url = ref('https://httpbin.org/get');
     const refetch = ref(false);
 
-    const { data } = useFetch(url, { refetch }).get();
-    console.log(data.value);
+    const { data } = useFetch({
+      url,
+      immediate: true,
+      params: {
+        id: `010002`,
+        name: 'weishaodaren',
+        isHandsome: true,
+      },
+    });
 
     // const A = await fetch(`https://api.github.com/users/weishaodaren`);
     // console.log(await A.json());
