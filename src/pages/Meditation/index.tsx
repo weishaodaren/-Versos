@@ -27,7 +27,15 @@ const Meditation = defineComponent({
 
     return () => (
       <>
-        <div>{userData.data?.name}</div>
+        <div>我是 {userData.data?.name}</div>
+        <div>
+          <img
+            style={{ width: '45px', height: '45px' }}
+            src={userData.data?.avatar_url as string}
+            alt="avatar"
+          />
+        </div>
+        <div>有{userData.data.followers}位绅士跟随我</div>
       </>
     );
   },
