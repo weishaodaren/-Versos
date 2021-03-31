@@ -64,10 +64,10 @@ const useFetch: FunctionalComponent<FetchOptions> = (options) => {
     if (method === 'GET') {
       const resp = await result.json();
       state.data = resp;
-      state.loading = false;
     } else {
       state.data = result;
     }
+    state.loading = false;
   };
 
   onBeforeMount(() => {

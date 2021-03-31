@@ -13,6 +13,7 @@ export default defineConfig({
       Hooks: resolve('src/hooks'),
       Utils: resolve('src/utils'),
       Pages: resolve('src/pages'),
+      Type: resolve('src/types'),
     },
   },
   plugins: [vue(), vueJSX()],
