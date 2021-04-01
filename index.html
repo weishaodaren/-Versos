@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      // 检测浏览器是否支持SW
+      if (navigator.serviceWorker != null) {
+        navigator.serviceWorker.register('sw.js').then(function (registartion) {
+          console.log('支持sw:', registartion.scope);
+        });
+      }
+    </script>
   </body>
 </html>
