@@ -4,10 +4,15 @@ import {
   onBeforeMount,
   onMounted,
   unref,
+  watch,
+  watchEffect,
+  nextTick,
+  reactive,
 } from 'vue';
 import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
+import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import { key } from '@/stores';
+import { userType } from '@/types';
 import { Container, Avatar, Describe, Name, NickName, Profile } from './styles';
 
 const Meditation = defineComponent({
@@ -15,6 +20,9 @@ const Meditation = defineComponent({
     const $store = useStore(key);
     const $route = useRoute();
     const { github } = $route.query;
+    const state = reactive({
+      userData: {} as userType.UserData,
+    });
 
     onBeforeMount(() =>
       $store.dispatch('getUserData', {
@@ -28,21 +36,24 @@ const Meditation = defineComponent({
       document.body.style.backgroundColor = `#126`;
     });
 
-    const { value: userData } = computed(() => $store.getters.userData);
+    watchEffect(() => {
+      const { value: userData } = computed(() => $store.getters.userData);
+      state.userData = userData;
+    });
 
     return () => (
       <Container>
-        <Avatar src={userData.avatar_url as string} />
+        <Avatar src={state.userData.avatar_url as string} />
         <Describe>
-          <Name>{userData?.name}</Name>
-          <NickName>{userData?.login}</NickName>
+          <Name>{state.userData?.name}</Name>
+          <NickName>{state.userData?.login}</NickName>
         </Describe>
         <Profile>
-          <div>{userData?.bio}</div>
+          <div>{state.userData?.bio}</div>
           <button>Edit profile</button>
           <div>
-            {userData?.followers} followers
-            {userData?.following}following
+            {state.userData?.followers} followers
+            {state.userData?.following}following
           </div>
         </Profile>
       </Container>
