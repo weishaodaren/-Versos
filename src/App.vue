@@ -93,6 +93,7 @@ export default defineComponent({
   color: pink;
   font-size: 30px;
 }
+
 .count-style {
   @include font-size();
 }

@@ -1,12 +1,14 @@
 import {
   defineComponent,
   onBeforeMount,
+  onMounted,
   reactive,
   ref,
   watchEffect,
 } from 'vue';
 import { useFetch } from 'Hooks';
 import { userType } from '@/types';
+import { Container, Avatar, Describe, Name, NickName, Profile } from './styles';
 
 const Meditation = defineComponent({
   setup() {
@@ -25,18 +27,26 @@ const Meditation = defineComponent({
       userData.data = data.value;
     });
 
+    onMounted(() => {
+      document.body.style.backgroundColor = `#126`;
+    });
+
     return () => (
-      <>
-        <div>我是 {userData.data?.name}</div>
-        <div>
-          <img
-            style={{ width: '45px', height: '45px' }}
-            src={userData.data?.avatar_url as string}
-            alt="avatar"
-          />
-        </div>
-        <div>有{userData.data.followers}位绅士跟随我</div>
-      </>
+      <Container>
+        <Avatar src={userData.data?.avatar_url as string} />
+        <Describe>
+          <Name>{userData.data?.name}</Name>
+          <NickName>{userData.data?.login}</NickName>
+        </Describe>
+        <Profile>
+          <div>{userData.data?.bio}</div>
+          <button>Edit profile</button>
+          <div>
+            {userData.data?.followers}followers
+            {userData.data?.following}following
+          </div>
+        </Profile>
+      </Container>
     );
   },
 });
