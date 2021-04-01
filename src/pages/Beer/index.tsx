@@ -13,7 +13,7 @@ const Beer = defineComponent({
   setup() {
     const $router = useRouter();
 
-    const placeholder = ref<string>(`please input ur pwd...`);
+    const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
     const inputValComputed = computed({
       get: () => inputVal.value,
