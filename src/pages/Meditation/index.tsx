@@ -6,7 +6,6 @@ import {
   unref,
   watch,
   watchEffect,
-  nextTick,
   reactive,
 } from 'vue';
 import { useStore } from 'vuex';
@@ -31,6 +30,12 @@ const Meditation = defineComponent({
         immediate: false,
       })
     );
+
+    onBeforeRouteLeave((to, from, next) => {
+      if (from.path === '/meditation')
+        document.body.style.backgroundColor = `pink`;
+      next();
+    });
 
     onMounted(() => {
       document.body.style.backgroundColor = `#126`;
