@@ -3,22 +3,22 @@ import {
   defineComponent,
   onBeforeMount,
   onMounted,
-  reactive,
-  ref,
   unref,
 } from 'vue';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 import { key } from '@/stores';
 import { Container, Avatar, Describe, Name, NickName, Profile } from './styles';
 
 const Meditation = defineComponent({
   setup() {
     const $store = useStore(key);
-    const url = ref('users/weishaodaren');
+    const $route = useRoute();
+    const { github } = $route.query;
 
     onBeforeMount(() =>
       $store.dispatch('getUserData', {
-        url: unref(url),
+        url: unref(`users/${github}`),
         method: 'GET',
         immediate: false,
       })

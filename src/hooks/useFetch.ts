@@ -32,7 +32,7 @@ const stringify: (P: { [x: string]: string | number | boolean }) => string = (
     .join('&');
 
 const useFetch: FunctionalComponent<FetchOptions> = (options) => {
-  let { url, immediate, params = {}, method } = options;
+  let { url, immediate, params, method } = options;
   url = path(unref(url));
 
   let body: BodyInit | null = null;
