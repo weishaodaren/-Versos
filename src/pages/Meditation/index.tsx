@@ -23,13 +23,13 @@ const Meditation = defineComponent({
       userData: {} as userType.UserData,
     });
 
-    onBeforeMount(() =>
+    onBeforeMount(() => {
       $store.dispatch('getUserData', {
         url: unref(`users/${github}`),
         method: 'GET',
         immediate: false,
-      })
-    );
+      });
+    });
 
     onBeforeRouteLeave((to, from, next) => {
       if (from.path === '/meditation')
