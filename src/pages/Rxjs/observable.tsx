@@ -1,6 +1,9 @@
 import { defineComponent } from 'vue';
 import { Observable as rxObservable, Subscriber } from 'rxjs';
 
+/**
+ * RxJS 逐步更新...
+ */
 const Observable = defineComponent({
   name: 'Observable',
   setup() {
