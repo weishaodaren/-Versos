@@ -1,13 +1,15 @@
 import { defineComponent } from 'vue';
-import Observable from './Observable.vue';
+import fromEvent from './fromEvent.vue';
+import Observable from './observable';
 
 const RxJxFn = defineComponent({
   name: 'RxJxFn',
-  components: { Observable },
+  components: { fromEvent, Observable },
   setup() {
     return () => (
       <div>
         This is Rxjs
+        <from-event />
         <Observable />
       </div>
     );
