@@ -3,7 +3,8 @@
     <h5 @click="onTea">Go to Tea</h5>
     <h5 @click="onCoffee">Go to Coffee</h5>
     <h5 @click="onBeer">Go to Beer</h5>
-    <h2 class="count-style" @click="onChange">
+    <h5 @click="onRX">Go to RxJs</h5>
+    <h2 class="count-style" @click="onChange" v-show="params.path !== '/rx'">
       count is : {{ countNum.count }}
     </h2>
     <RouterView />
@@ -83,6 +84,8 @@ export default defineComponent({
       onBeer: () => router.replace('/beer'),
       countNum,
       isHidden,
+      onRX: () => router.replace('/rx'),
+      params,
     };
   },
 });

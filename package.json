@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "immer": "^9.0.1",
+    "rxjs": "^6.6.7",
     "three": "^0.126.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.5",

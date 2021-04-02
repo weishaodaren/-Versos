@@ -24,6 +24,7 @@ const routes: Array<IRoutes> = [
     name: 'Meditation',
     component: () => import('Pages/Meditation'),
   },
+  { path: '/rx', name: 'Rx', component: () => import('Pages/Rxjs') },
 ];
 
 const router: Router = createRouter({
