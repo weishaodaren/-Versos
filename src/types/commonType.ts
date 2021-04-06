@@ -44,5 +44,3 @@ type SoulmateOmit = _Omit<Soulmate, 'age'>;
 export type Omit<T, K> = {
   [P in Exclude<keyof T, K>]: T[P];
 };
-
-type SoulmateOmit_ = Omit<Soulmate, 'age'>;
