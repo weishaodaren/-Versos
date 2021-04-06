@@ -32,3 +32,17 @@ type SoulmateRecord = _Record<'Weishaodaren' | 'Qinyue', Soulmate>;
 export type _Exclude<T, U> = T extends U ? never : T;
 
 type SoulmateExclute = _Exclude<Soulmate | SoulmateRequired, SoulmateRecord>;
+
+export type _Extract<T, U> = T extends U ? T : never;
+
+type SoulmateExtract = _Extract<SoulmateRecord, Soulmate>;
+
+export type _Omit<T, K> = _Pick<T, _Exclude<keyof T, K>>;
+
+type SoulmateOmit = _Omit<Soulmate, 'age'>;
+
+export type Omit<T, K> = {
+  [P in Exclude<keyof T, K>]: T[P];
+};
+
+type SoulmateOmit_ = Omit<Soulmate, 'age'>;
