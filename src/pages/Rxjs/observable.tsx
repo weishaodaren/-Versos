@@ -30,6 +30,19 @@ const Observable = defineComponent({
       },
     });
     console.log(`just after subscribe`);
+
+    const foo = new rxObservable((subscriber: Subscriber<number>) => {
+      console.log(`hello`);
+      subscriber.next(42);
+    });
+
+    foo.subscribe((x) => {
+      console.log(x);
+    });
+
+    foo.subscribe((y) => {
+      console.log(y);
+    });
   },
 });
 
