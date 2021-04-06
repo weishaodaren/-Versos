@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import fromEvent from './fromEvent.vue';
 import Observable from './observable';
-import { Demo1 } from './operators';
+import { Demo1, Ajax } from './operators';
 
 const RxJxFn = defineComponent({
   name: 'RxJxFn',
@@ -12,7 +12,8 @@ const RxJxFn = defineComponent({
         This is Rxjs
         {/* <from-event /> */}
         {/* <Observable /> */}
-        <Demo1 />
+        {/* <Demo1 /> */}
+        <Ajax />
       </div>
     );
   },
