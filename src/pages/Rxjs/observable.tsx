@@ -43,16 +43,6 @@ const Observable = defineComponent({
     foo.subscribe((y) => {
       console.log(y);
     });
-
-    const observable = new rxObservable((subscriber: Subscriber<string>) => {
-      const intervalId = setInterval(() => {
-        subscriber.next(`hi`);
-      }, 1000);
-
-      return function unsubscribe() {
-        clearInterval(intervalId);
-      };
-    });
   },
 });
 
