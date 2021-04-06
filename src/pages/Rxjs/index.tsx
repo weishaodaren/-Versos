@@ -5,7 +5,7 @@ import { Demo1, Ajax, Demo2 } from './operators';
 
 const RxJxFn = defineComponent({
   name: 'RxJxFn',
-  components: { fromEvent, Observable, Demo1 },
+  components: { fromEvent, Observable, Demo1, Ajax },
   setup() {
     return () => (
       <div>
