@@ -1,5 +1,6 @@
 import Demo1 from './demo';
 import Ajax from './ajax';
-import Demo2 from './demo2';
+import CombineAll from './combineAll';
+import CombineLatest from './combineLatest';
 
-export { Demo1, Ajax, Demo2 };
+export { Demo1, Ajax, CombineAll, CombineLatest };

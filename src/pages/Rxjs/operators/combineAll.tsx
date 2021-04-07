@@ -3,7 +3,7 @@ import { interval } from 'rxjs';
 import { take, map, combineAll } from 'rxjs/operators';
 
 export default defineComponent({
-  name: 'Demo2',
+  name: 'CombineAll',
   setup() {
     const source = interval(1000).pipe(take(2));
     const example = source.pipe(

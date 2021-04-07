@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue';
 import fromEvent from './fromEvent.vue';
 import Observable from './observable';
-import { Demo1, Ajax, Demo2 } from './operators';
+import { Demo1, Ajax, CombineAll, CombineLatest } from './operators';
 
 const RxJxFn = defineComponent({
   name: 'RxJxFn',
-  components: { fromEvent, Observable, Demo1, Ajax },
+  components: { fromEvent, Observable, Demo1, Ajax, CombineAll, CombineLatest },
   setup() {
     return () => (
       <div>
@@ -14,7 +14,9 @@ const RxJxFn = defineComponent({
         {/* <Observable /> */}
         {/* <Demo1 /> */}
         {/* <Ajax /> */}
-        <Demo2 />
+        {/* <CombineAll /> */}
+        <CombineLatest />
+        {/* <button>Red</button> */}
       </div>
     );
   },
