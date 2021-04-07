@@ -23,7 +23,7 @@ const RxJxFn = defineComponent({
     Concat,
   },
   setup() {
-    ForkJoin.A();
+    ForkJoin.B();
     return () => (
       <div>
         This is Rxjs
