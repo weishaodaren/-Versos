@@ -1,4 +1,4 @@
-# Vue 3 + Typescript + Vite2 + Sass + Less + Styled-Components + Stylus + TSX + PWA + RxJx
+# Vue 3 + Typescript + Vite2 + Sass + Less + Styled-Components + Stylus + TSX + PWA + RxJs
 
 ### 缓慢更新，学习 RB 去了
 
