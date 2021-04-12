@@ -1,5 +1,7 @@
 # Vue 3 + Typescript + Vite2 + Sass + Less + Styled-Components + Stylus + TSX + PWA + RxJx
 
+### 缓慢更新，学习 RB 去了
+
 This template should help get you started developing with Vue 3 and Typescript in Vite.
 
 ## Recommended IDE Setup
