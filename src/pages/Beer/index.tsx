@@ -2,7 +2,7 @@ import { defineComponent, Fragment, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { WrappedInput, Button } from './style';
 // import { clamp } from 'lodash';
-import { inRange } from '@/utils';
+import { inRange, clamp } from '@/utils';
 
 const List = [
   { name: 'A', aliasName: 'a' },
