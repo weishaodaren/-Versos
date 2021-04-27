@@ -1,3 +1,6 @@
+import clamp from './clamp';
+import inRange from './inRange';
+
 const messageChannelFn = () => {
   const channel = new MessageChannel();
   const { port1, port2 } = channel;
@@ -34,4 +37,4 @@ const block = (params: object) => {
   return P;
 };
 
-export { messageChannelFn, block };
+export { messageChannelFn, block, clamp, inRange };

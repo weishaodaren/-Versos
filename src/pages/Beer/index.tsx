@@ -1,6 +1,8 @@
 import { defineComponent, Fragment, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { WrappedInput, Button } from './style';
+// import { clamp } from 'lodash';
+import { inRange } from '@/utils';
 
 const List = [
   { name: 'A', aliasName: 'a' },
@@ -12,6 +14,9 @@ const Beer = defineComponent({
   components: { 'wrapped-input': WrappedInput, Button },
   setup() {
     const $router = useRouter();
+
+    const sample = inRange(-10, -19, 10);
+    console.log(sample, 'sample');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
