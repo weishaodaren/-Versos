@@ -1,5 +1,6 @@
 import clamp from './clamp';
 import inRange from './inRange';
+import uniqueId from './uniqueId';
 
 const messageChannelFn = () => {
   const channel = new MessageChannel();
@@ -37,4 +38,4 @@ const block = (params: object) => {
   return P;
 };
 
-export { messageChannelFn, block, clamp, inRange };
+export { messageChannelFn, block, clamp, inRange, uniqueId };
