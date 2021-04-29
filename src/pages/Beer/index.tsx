@@ -1,7 +1,7 @@
 import { defineComponent, Fragment, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { WrappedInput, Button } from './style';
-// import {  } from 'lodash';
+import { constant } from 'lodash';
 import { inRange, clamp, uniqueId, times } from '@/utils';
 
 const List = [
@@ -18,7 +18,7 @@ const Beer = defineComponent({
     // const sample = inRange(-10, -19, 10);
     // const sample = random(-20, 20);
     // const sample = uniqueId('weishaodaren');
-    const sample = times(100, String);
+    const sample = times(100, constant({ name: 'weishaodaren ' }));
     console.log(sample, 'sample');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
