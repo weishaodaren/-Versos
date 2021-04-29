@@ -9,8 +9,9 @@ import {
   kebabCase,
   truncate,
   at,
+  get,
 } from 'lodash';
-import { inRange, clamp, uniqueId, times } from '@/utils';
+import { inRange, clamp, uniqueId, times, invert } from '@/utils';
 
 const List = [
   { name: 'A', aliasName: 'a' },
@@ -39,7 +40,9 @@ const Beer = defineComponent({
     // const sample = kebabCase('W E I S H A O D A R E N');
     // const sample = truncate('15821044438', { length: 4 });
     // const sample = Object.assign(view, { a: 'BB', label: 'xixix' });
-    const sample = at(demo, ['a[0].b.c', 'a[1]']);
+    // const sample = at(demo, ['a[0].b.c', 'a[1]']);
+    // const sample = get(demo, 'a.b.c', 'no');
+    const sample = invert({ a: 1, b: 2 });
     console.log(sample, 'sample');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
