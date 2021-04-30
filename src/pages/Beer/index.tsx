@@ -10,6 +10,10 @@ import {
   truncate,
   at,
   get,
+  assign,
+  merge,
+  omit,
+  set,
 } from 'lodash';
 import { inRange, clamp, uniqueId, times, invert } from '@/utils';
 
@@ -42,7 +46,19 @@ const Beer = defineComponent({
     // const sample = Object.assign(view, { a: 'BB', label: 'xixix' });
     // const sample = at(demo, ['a[0].b.c', 'a[1]']);
     // const sample = get(demo, 'a.b.c', 'no');
-    const sample = invert({ a: 1, b: 2 });
+    // const sample = invert({ a: 1, b: 2 });
+    // let a = {
+    //   a: [{ b: 2 }, { d: 4 }, { c: 88 }],
+    // };
+
+    // let b = {
+    //   a: [{ c: 3 }, { e: 5 }],
+    // };
+
+    // let sample = merge(a, b);
+    let a = { a: 1, b: 2, c: true };
+    // const sample = omit(a, ['c']);
+    const sample = set(demo, 'a[0].b.c.d', 'heihei');
     console.log(sample, 'sample');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
