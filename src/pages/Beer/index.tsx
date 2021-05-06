@@ -16,6 +16,8 @@ import {
   set,
   // findKey,
   // after,
+  before,
+  defer,
 } from 'lodash';
 import {
   inRange,
@@ -77,9 +79,14 @@ const Beer = defineComponent({
     const sample = findKey(a, (args: any) => args.age === 40);
     console.log(sample, 'sample');
 
-    let aa = after(2, () => console.log(123321));
+    let aa = before(2, () => console.log(123321));
     aa();
     aa();
+    aa();
+
+    defer((text) => {
+      console.log(text);
+    }, 'weishaodaren');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
