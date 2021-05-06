@@ -15,8 +15,17 @@ import {
   omit,
   set,
   // findKey,
+  // after,
 } from 'lodash';
-import { inRange, clamp, uniqueId, times, invert, findKey } from '@/utils';
+import {
+  inRange,
+  clamp,
+  uniqueId,
+  times,
+  invert,
+  findKey,
+  after,
+} from '@/utils';
 
 const List = [
   { name: 'A', aliasName: 'a' },
@@ -67,6 +76,10 @@ const Beer = defineComponent({
     };
     const sample = findKey(a, (args: any) => args.age === 40);
     console.log(sample, 'sample');
+
+    let aa = after(2, () => console.log(123321));
+    aa();
+    aa();
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);

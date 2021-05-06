@@ -4,6 +4,7 @@ import uniqueId from './uniqueId';
 import times from './times';
 import invert from './invert';
 import findKey from './findKey';
+import after from './after';
 
 const messageChannelFn = () => {
   const channel = new MessageChannel();
@@ -50,4 +51,5 @@ export {
   times,
   invert,
   findKey,
+  after,
 };
