@@ -14,8 +14,9 @@ import {
   merge,
   omit,
   set,
+  // findKey,
 } from 'lodash';
-import { inRange, clamp, uniqueId, times, invert } from '@/utils';
+import { inRange, clamp, uniqueId, times, invert, findKey } from '@/utils';
 
 const List = [
   { name: 'A', aliasName: 'a' },
@@ -56,9 +57,15 @@ const Beer = defineComponent({
     // };
 
     // let sample = merge(a, b);
-    let a = { a: 1, b: 2, c: true };
+    // let a = { a: 1, b: 2, c: true };
     // const sample = omit(a, ['c']);
-    const sample = set(demo, 'a[0].b.c.d', 'heihei');
+    // const sample = set(demo, 'a[0].b.c.d', 'heihei');
+    const a = {
+      barney: { age: 36, active: true },
+      fred: { age: 40, active: false },
+      pebbles: { age: 1, active: true },
+    };
+    const sample = findKey(a, (args: any) => args.age === 40);
     console.log(sample, 'sample');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);

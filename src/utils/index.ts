@@ -3,6 +3,7 @@ import inRange from './inRange';
 import uniqueId from './uniqueId';
 import times from './times';
 import invert from './invert';
+import findKey from './findKey';
 
 const messageChannelFn = () => {
   const channel = new MessageChannel();
@@ -40,4 +41,13 @@ const block = (params: object) => {
   return P;
 };
 
-export { messageChannelFn, block, clamp, inRange, uniqueId, times, invert };
+export {
+  messageChannelFn,
+  block,
+  clamp,
+  inRange,
+  uniqueId,
+  times,
+  invert,
+  findKey,
+};
