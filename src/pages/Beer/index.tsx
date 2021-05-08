@@ -18,6 +18,7 @@ import {
   // after,
   before,
   defer,
+  chunk,
 } from 'lodash';
 import {
   inRange,
@@ -84,9 +85,16 @@ const Beer = defineComponent({
     aa();
     aa();
 
-    defer((text) => {
-      console.log(text);
-    }, 'weishaodaren');
+    let bb = chunk(
+      [
+        { name: 'weishaodaren', age: 26, gender: true },
+        { name: 'qinyue', age: 24, gender: false },
+        { name: 'unknow', age: 0.02, gender: false },
+      ],
+      2
+    );
+
+    console.log(bb, 'this is chunk');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
