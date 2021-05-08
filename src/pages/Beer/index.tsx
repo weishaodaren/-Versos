@@ -99,6 +99,8 @@ const Beer = defineComponent({
     let cc = drop(bb, 1);
     console.log(cc, 'this is drop');
 
+    // intersection & fromPairs
+
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
     const inputValComputed = computed({
