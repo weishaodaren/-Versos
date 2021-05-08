@@ -19,6 +19,7 @@ import {
   before,
   defer,
   chunk,
+  drop,
 } from 'lodash';
 import {
   inRange,
@@ -95,6 +96,8 @@ const Beer = defineComponent({
     );
 
     console.log(bb, 'this is chunk');
+    let cc = drop(bb, 1);
+    console.log(cc, 'this is drop');
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
     const inputVal = ref<string>(``);
