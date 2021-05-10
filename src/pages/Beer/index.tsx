@@ -20,6 +20,7 @@ import {
   defer,
   chunk,
   drop,
+  intersection,
 } from 'lodash';
 import {
   inRange,
@@ -99,6 +100,8 @@ const Beer = defineComponent({
     let cc = drop(bb, 1);
     console.log(cc, 'this is drop');
 
+    const demo01 = intersection([2, 1], [1, 4]);
+    console.log(demo01, 'demo01');
     // intersection & fromPairs
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
