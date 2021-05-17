@@ -21,6 +21,7 @@ import {
   chunk,
   drop,
   intersection,
+  // pull,
 } from 'lodash';
 import {
   inRange,
@@ -30,6 +31,7 @@ import {
   invert,
   findKey,
   after,
+  pull,
 } from '@/utils';
 
 const List = [
@@ -102,6 +104,8 @@ const Beer = defineComponent({
 
     const demo01 = intersection([2, 1], [1, 4]);
     console.log(demo01, 'demo01');
+    const demo02 = pull([12, 12, 34, 5423, 34], 12);
+    console.log(demo02);
     // intersection & fromPairs
 
     const placeholder = ref<string>(`input ur GitHub userName...`);
