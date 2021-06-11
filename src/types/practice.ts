@@ -33,3 +33,39 @@ interface F {
 const o: F = { 1: `Hi` };
 
 o[1] === o[1];
+
+interface Aa {
+  a: boolean;
+  b: string;
+  c: number;
+  d: () => void;
+}
+
+type TypeAa<T> = { [K in keyof T]: string };
+
+let numOrStrProp: number | string;
+
+const isString = (arg: unknown): arg is string => typeof arg === 'string';
+
+function useIt(numOrStr: number | string) {
+  if (isString(numOrStr)) {
+    console.log(numOrStr.length);
+  }
+}
+
+type Falsy = false | '' | 0 | null | undefined;
+const isFalsy = (val: unknown): val is Falsy => !val;
+
+class D {
+  public a() {}
+
+  public useA() {
+    return 'A';
+  }
+}
+
+class E {
+  public b() {}
+
+  public useB() {}
+}
