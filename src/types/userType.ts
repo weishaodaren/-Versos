@@ -1,4 +1,4 @@
-export interface UserData {
+interface UserData {
   avatar_url?: string | null;
   bio?: string | null;
   blog?: string | null;
@@ -32,3 +32,5 @@ export interface UserData {
   updated_at?: Date;
   url?: string | null;
 }
+
+export type { UserData };
