@@ -67,5 +67,26 @@ class D {
 class E {
   public b() {}
 
-  public useB() {}
+  public useB() {
+    return 'B';
+  }
 }
+
+function useIt(arg: D | E): void {
+  'a' in arg ? arg.useA : arg.useB();
+}
+
+interface LoginProps {
+  isLogin: boolean;
+  name: string;
+}
+
+interface UnloginProps {
+  isLogin: boolean;
+  from: string;
+}
+
+type UserProps = LoginProps | UnloginProps;
+
+const getUserInfo = (user: LoginProps | UnloginProps): string =>
+  'name' in user ? user.name : user.from;
