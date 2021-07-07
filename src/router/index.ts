@@ -18,13 +18,6 @@ const routes: Array<IRoutes> = [
     name: 'Coffee',
     component: () => import('Pages/Coffee/index.vue'),
   },
-  { path: '/beer', name: 'Beer', component: () => import('Pages/Beer') },
-  {
-    path: '/meditation',
-    name: 'Meditation',
-    component: () => import('Pages/Meditation'),
-  },
-  { path: '/rx', name: 'Rx', component: () => import('Pages/Rxjs') },
 ];
 
 const router: Router = createRouter({
