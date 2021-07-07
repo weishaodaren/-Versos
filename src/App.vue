@@ -1,4 +1,5 @@
 <template>
+  <versos-button />
   <RouterView />
 </template>
 
@@ -6,9 +7,13 @@
 import { defineComponent, ref, reactive } from 'vue';
 import { useRoute, RouterView } from 'vue-router';
 import * as Util from './utils';
+import Button from '@/components/button.vue';
 
 export default defineComponent({
   name: 'App',
+  components: {
+    versosButton: Button,
+  },
   setup() {
     const refApp = ref<HTMLDivElement | Node>();
     const countNum = reactive({ count: 0 });
