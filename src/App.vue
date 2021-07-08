@@ -1,5 +1,10 @@
 <template>
-  <versos-button />
+  <versos-button
+    :name="btnName"
+    :onClick="handleClick"
+    :backgroundColor="bgc"
+    :textColor="txtCol"
+  />
   <RouterView />
 </template>
 
@@ -23,11 +28,23 @@ export default defineComponent({
     Util.messageChannelFn().port1.postMessage('呼叫 port2');
     Util.messageChannelFn().port2.postMessage('回复 port1');
 
+    const handleClick = () => {
+      console.log(123);
+    };
+
+    const btnName = ref('VersosButton+Weishaodaren');
+    const bgc = ref('#126');
+    const txtCol = ref('#fff');
+
     return {
       refApp,
       countNum,
       isHidden,
       params,
+      bgc,
+      btnName,
+      txtCol,
+      handleClick,
     };
   },
 });
